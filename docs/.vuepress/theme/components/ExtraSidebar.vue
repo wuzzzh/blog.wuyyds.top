@@ -1,93 +1,108 @@
 <script src="../util/index.js"></script>
 <template xmlns="http://www.w3.org/1999/html">
   <aside class="page-sidebar">
-    <slot name="top"/>
-      <div class="page-side-toolbar">
-          <div v-for="(item, index) in list" :key="index" class="option-box" @mouseover="showToc($event)" @mouseout="hideToc($event)">
-              <img class="nozoom" :src="item.icon" width="24px" />
-              <span class="show-txt" v-html="item.title" />
-              <div class="toc-container">
-                  <div class="pos-box">
-                      <div class="icon-arrow"></div>
-                      <div class="scroll-box" style="text-align:center">
-                          <span v-html="item.popoverTitle"></span>
-                          <img :src="item.popoverUrl" height="180px" style="margin:10px;" />
-                          <span v-html="item.popoverDesc"></span>
-                      </div>
-                  </div>
-              </div>
+    <slot name="top" />
+    <div class="page-side-toolbar">
+      <div
+        v-for="(item, index) in list"
+        :key="index"
+        class="option-box"
+        @mouseover="showToc($event)"
+        @mouseout="hideToc($event)"
+      >
+        <img
+          class="nozoom"
+          :src="item.icon"
+          width="24px"
+        />
+        <span
+          class="show-txt"
+          v-html="item.title"
+        />
+        <div class="toc-container">
+          <div class="pos-box">
+            <div class="icon-arrow"></div>
+            <div
+              class="scroll-box"
+              style="text-align: center"
+            >
+              <span v-html="item.popoverTitle"></span>
+              <img
+                :src="item.popoverUrl"
+                height="180px"
+                style="margin: 10px"
+              />
+              <span v-html="item.popoverDesc"></span>
+            </div>
           </div>
+        </div>
       </div>
-    <slot name="middle"/>
+    </div>
+    <slot name="middle" />
 
-    <slot name="bottom"/>
+    <slot name="bottom" />
   </aside>
 </template>
 
 <script>
-
-import NavLinks from '@theme/components/NavLinks.vue'
-
+import NavLinks from '@theme/components/NavLinks.vue';
 
 export default {
   name: 'PageSidebar',
-  data(){
-
+  data() {
     return {
-      list: []
-    }
+      list: [],
+    };
   },
   components: { NavLinks },
 
   props: ['pageSidebarItems', 'sidebarItems'],
 
-  computed: {
-  },
+  computed: {},
   mounted() {
-    this.list = this.$site.themeConfig.extraSideBar
+    this.list = this.$site.themeConfig.extraSideBar;
   },
   methods: {
-      showToc($event){
-          $event.currentTarget.className="option-box on";
-      },
-      hideToc($event){
-          $event.currentTarget.className="option-box";
-      },
-      showTocOver($event){
-          $event.currentTarget.className="option-box-toc-over on";
-      },
-      hideTocOver($event){
-          $event.currentTarget.className="option-box-toc-over";
-      },
-  }
+    showToc($event) {
+      $event.currentTarget.className = 'option-box on';
+    },
+    hideToc($event) {
+      $event.currentTarget.className = 'option-box';
+    },
+    showTocOver($event) {
+      $event.currentTarget.className = 'option-box-toc-over on';
+    },
+    hideTocOver($event) {
+      $event.currentTarget.className = 'option-box-toc-over';
+    },
+  },
+};
 
+function resolvePrev(page, items) {
+  return find(page, items, -1);
 }
 
-function resolvePrev (page, items) {
-  return find(page, items, -1)
+function resolveNext(page, items) {
+  return find(page, items, 1);
 }
 
-function resolveNext (page, items) {
-  return find(page, items, 1)
-}
-
-function find (page, items, offset) {
-  const res = []
-  flatten(items, res)
+function find(page, items, offset) {
+  const res = [];
+  flatten(items, res);
   for (let i = 0; i < res.length; i++) {
-    const cur = res[i]
+    const cur = res[i];
     if (cur.type === 'page' && cur.path === decodeURIComponent(page.path)) {
-      return res[i + offset]
+      return res[i + offset];
     }
   }
 }
 
-function flatten (items, res) {
+function flatten(items, res) {
   for (let i = 0, l = items.length; i < l; i++) {
     if (items[i].type === 'group') {
-      flatten(items[i].children || [], res)
+      flatten(items[i].children || [], res);
     } else {
-      res.push(items[i])
+      res.push(items[i]);
     }
   }
 }

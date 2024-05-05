@@ -1,47 +1,56 @@
 <template>
   <main class="page">
     <slot name="top" />
-      <div class="content">
-          <div style="width:100%">
-              <Content class="theme-default-content custom-content"  />
-              <PageEdit style="margin: 0"/>
-              <!--      <div class="option-box-toc-fixed">-->
-              <!--         -->
-              <!--      </div>-->
+    <div class="content">
+      <div style="width: 100%">
+        <Content class="theme-default-content custom-content" />
+        <PageEdit style="margin: 0" />
+        <!--      <div class="option-box-toc-fixed">-->
+        <!--         -->
+        <!--      </div>-->
 
-
-              <PageNav v-bind="{ sidebarItems }" />
-          </div>
-
-          <div class="toc-container-sidebar" ref="tocc">
-              <div class="pos-box">
-                  <div class="icon-arrow"></div>
-                  <div class="scroll-box" style="max-height:86vh">
-                      <div style="font-weight:bold;">{{pageSidebarItems[0].title}}</div>
-                      <hr/>
-                      <div class="toc-box">
-                          <PageSidebarToc :depth="0" :items="pageSidebarItems" :sidebarDepth="6"/>
-                      </div>
-                  </div>
-              </div>
-          </div>
+        <PageNav v-bind="{ sidebarItems }" />
       </div>
+
+      <div
+        class="toc-container-sidebar"
+        ref="tocc"
+      >
+        <div class="pos-box">
+          <div class="icon-arrow"></div>
+          <div
+            class="scroll-box"
+            style="max-height: 86vh"
+          >
+            <div style="font-weight: bold">{{ pageSidebarItems[0].title }}</div>
+            <hr />
+            <div class="toc-box">
+              <PageSidebarToc
+                :depth="0"
+                :items="pageSidebarItems"
+                :sidebarDepth="6"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <slot name="bottom" />
   </main>
 </template>
 
 <script>
-import PageEdit from '@theme/components/PageEdit.vue'
-import PageNav from '@theme/components/PageNav.vue'
-import PageSidebarToc from '@theme/components/PageSidebarToc.vue'
+import PageEdit from '@theme/components/PageEdit.vue';
+import PageNav from '@theme/components/PageNav.vue';
+import PageSidebarToc from '@theme/components/PageSidebarToc.vue';
 export default {
   components: { PageEdit, PageNav, PageSidebarToc },
   props: ['sidebarItems', 'pageSidebarItems'],
   mounted() {
-    console.log(this.$site,this, 'this.$site')
-  }
-}
+    console.log(this.$site, this, 'this.$site');
+  },
+};
 </script>
 
 <style lang="stylus">
@@ -133,5 +142,4 @@ export default {
           margin-top: 0;
         & > ol > li
           padding-left: 15px;
-
 </style>
