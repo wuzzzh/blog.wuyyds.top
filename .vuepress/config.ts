@@ -5,12 +5,13 @@ import footer from './footer';
 import extraSideBar from './extraSideBar';
 
 const author = '程序员山海';
-const domain = 'https://wuyyds.top';
+const domain = 'https://www.wuyyds.top';
 const tags = ['程序员', '编程', '计算机'];
 
 export default defineConfig({
   title: '山海的秘密花园',
   description: '贴心的编程学习路线，全面的编程知识百科',
+  dest: 'dist',
   head: [
     // 站点图标
     ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -38,7 +39,7 @@ export default defineConfig({
       `,
     ],
   ],
-  permalink: '/:slug',
+  // permalink: '/:slug',
 
   // 监听文件变化，热更新
   extraWatchFiles: ['.vuepress/*.ts', '.vuepress/sidebars/*.ts'],
