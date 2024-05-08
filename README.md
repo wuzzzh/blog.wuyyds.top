@@ -1,5 +1,5 @@
 ---
-home: false
+title: Home
 ---
 
-Hello World
+## [Java](java)

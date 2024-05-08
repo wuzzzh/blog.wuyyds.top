@@ -1,27 +1,27 @@
-import { defineConfig } from 'vuepress/config';
+import {defineConfig} from 'vuepress/config';
 import navbar from './navbar';
 import sidebar from './sidebar';
 import footer from './footer';
-import extraSideBar from './extraSideBar';
+import extraSideBar from "./extraSideBar";
 
 const author = '程序员山海';
 const domain = 'https://www.wuyyds.top';
 const tags = ['程序员', '编程', '计算机'];
 
 export default defineConfig({
-  title: '山海的秘密花园',
-  description: '贴心的编程学习路线，全面的编程知识百科',
+  title: '纵情观山海',
+  description: '纵情观山海',
   dest: 'dist',
   head: [
     // 站点图标
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', {rel: 'icon', href: '/favicon.ico'}],
     // SEO
     [
       'meta',
       {
         name: 'keywords',
         content:
-          '程序员山海, 编程学习路线, 编程知识百科, Java, 编程导航, 前端, 开发, 编程分享, 项目, IT, 求职, 面经',
+            '程序员山海, 编程学习路线, 编程知识百科, Java, 编程导航, 前端, 开发, 编程分享, 项目, IT, 求职, 面经',
       },
     ],
     // 百度统计
@@ -67,19 +67,19 @@ export default defineConfig({
         siteTitle: (_, $site) => $site.title,
         title: ($page) => $page.title,
         description: ($page) =>
-          $page.frontmatter.description || $page.description,
+            $page.frontmatter.description || $page.description,
         author: (_, $site) => $site.themeConfig.author || author,
         tags: ($page) => $page.frontmatter.tags || tags,
         type: ($page) => 'article',
         url: (_, $site, path) =>
-          ($site.themeConfig.domain || domain || '') + path,
+            ($site.themeConfig.domain || domain || '') + path,
         image: ($page, $site) =>
-          $page.frontmatter.image &&
-          (($site.themeConfig.domain &&
-            !$page.frontmatter.image.startsWith('http')) ||
-            '') + $page.frontmatter.image,
+            $page.frontmatter.image &&
+            (($site.themeConfig.domain &&
+                    !$page.frontmatter.image.startsWith('http')) ||
+                '') + $page.frontmatter.image,
         publishedAt: ($page) =>
-          $page.frontmatter.date && new Date($page.frontmatter.date),
+            $page.frontmatter.date && new Date($page.frontmatter.date),
         modifiedAt: ($page) => $page.lastUpdated && new Date($page.lastUpdated),
       },
     ],

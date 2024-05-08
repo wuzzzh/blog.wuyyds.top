@@ -12,28 +12,28 @@
         <PageNav v-bind="{ sidebarItems }" />
       </div>
 
-      <div
-        class="toc-container-sidebar"
-        ref="tocc"
-      >
-        <div class="pos-box">
-          <div class="icon-arrow"></div>
-          <div
-            class="scroll-box"
-            style="max-height: 86vh"
-          >
-            <div style="font-weight: bold">{{ pageSidebarItems[0].title }}</div>
-            <hr />
-            <div class="toc-box">
-              <PageSidebarToc
-                :depth="0"
-                :items="pageSidebarItems"
-                :sidebarDepth="6"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+<!--      <div-->
+<!--        class="toc-container-sidebar"-->
+<!--        ref="tocc"-->
+<!--      >-->
+<!--        <div class="pos-box">-->
+<!--          <div class="icon-arrow"></div>-->
+<!--          <div-->
+<!--            class="scroll-box"-->
+<!--            style="max-height: 86vh"-->
+<!--          >-->
+<!--            <div style="font-weight: bold">{{ pageSidebarItems[0].title }}</div>-->
+<!--            <hr />-->
+<!--            <div class="toc-box">-->
+<!--              <PageSidebarToc-->
+<!--                :depth="0"-->
+<!--                :items="pageSidebarItems"-->
+<!--                :sidebarDepth="6"-->
+<!--              />-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
 
     <slot name="bottom" />
